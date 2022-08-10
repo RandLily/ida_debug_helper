@@ -15,7 +15,7 @@ def adb_input(string):
         
 def start_server(name):
     cmd='start adb shell "su -c \'./data/local/tmp/'+name+"'"
-    subprocess.Popen(cmd,shell=True)
+    subprocess.run(cmd,shell=True)
     
 def jdb_connect():
     subprocess.Popen("jdb -connect com.sun.jdi.SocketAttach:hostname=localhost,port=17788",shell=True)
