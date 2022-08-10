@@ -1,21 +1,9 @@
-每次调试apk so文件前的前置工作太麻烦了 adb forward  jdb 啥的 还要一直f9 到所调试的so加载进内存，
-于是写了个脚本，自动化完成调试的前置工作，直接运行到所需的so文件load,帮助逆向者抛开前面的繁琐工作
+半自动完成IDA动态调试SO前置工作以及部分辅助工作
 
-# requiment:
-1. python3
-2. [adbutils](https://github.com/openatx/adbutils)
+参考了
+https://github.com/20000s/ida_debug_helper
+https://www.52pojie.cn/forum.php?mod=viewthread&tid=1668186
 
-
-# usage:
-1.手机上运行ida的android_server
-2. ida载入脚本 ,debug选择android remote debugger,运行start_debug(package_name,so_name) 所调试的apk名字 so的名字 
-3. 按照脚本提示 手机上点击一次apk
-即可完整
-
-# 【todo】
-打算做个idapython脚本汇总，将可能用到的功能包含进去
-1. dump (done)  dump(start_address,end_address)
-2. break jni_onload
-3. break init_array
-
-
+移除了对adbutils的依赖，移除了dump功能（笔者有其它插件代替，需要的自行添加）
+增加了启动IDAServer等功能，优化了特殊情况下的start_debug
+仅Windows测试通过，理论上也适用于Linux、MAC
