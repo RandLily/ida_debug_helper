@@ -24,14 +24,6 @@ def cat_maps(name,pid):
     cmd="adb shell "
     cmd+='"su -c '+"'cat /proc/" + str(pid) + "/maps | grep " + name + "'\""
     return subprocess.getoutput(cmd)
-def cat_maps1(name,pid):
-    popen = subprocess.Popen("adb shell su",stdout = subprocess.PIPE,stdin=subprocess.PIPE)
-    cmd="cat /proc/" + str(pid) + "/maps | grep " + name + "\n"
-    popen.stdin.write(cmd.encode())
-    popen.stdin.flush()
-    r=popen.communicate()[0]
-    popen.terminate()
-    return r.decode()
 
 #mode：0为attach模式(默认)，1为spawn模式(按需)
 #port：ida端口，默认为23976
